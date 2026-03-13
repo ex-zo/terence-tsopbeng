@@ -22,13 +22,13 @@ Je suis un **Data Analyst et Business Intelligence Expert** basé à **Versaille
 **Intelligence Artificielle pour l'Orientation Professionnelle**
 - 🔗 [Voir le projet](https://partyrock.aws/u/THEDY/ZYEioAodt/Career-Match-Pro)
 - 🛠️ **Stack** : AWS PartyRock, Claude AI, LLM
-- 📊 **Impact** : Matching intelligentdes candidats aux offres d'emploi
+- 📊 **Impact** : Matching intelligent des candidats aux offres d'emploi
 
 ### 2️⃣ **OptimumSCM** - AWS PartyRock  
 **Optimisation de la Chaîne d'Approvisionnement**
 - 🔗 [Voir le projet](https://partyrock.aws/u/THEDY/pmzgGwQRM/OptimumSCM)
 - 🛠️ **Stack** : AWS PartyRock, Supply Chain Models, AI
-- 📈 **Résultat** : Optimisation distributionflows de 20%
+- 📈 **Résultat** : Optimisation des flux de distribution de 20%
 
 ### 3️⃣ **Advanced Analytics Dashboard** - Snowflake
 **Plateforme d'Analyse Avancée en Temps Réel**
@@ -79,21 +79,16 @@ Je suis un **Data Analyst et Business Intelligence Expert** basé à **Versaille
 ## 🎓 FORMATION
 
 🏫 **MBA Big Data & IA** - MBA ESG Paris (Sept 2025 - Oct 2027)
-
-🏫 **Master Supply Chain Management** - MIT Micro Master (Août 2025 - Oct 2027) 
-
+🏫 **Master Supply Chain Management** - MIT Micro Master (Août 2025 - Oct 2027)  
 🏫 **Master Innovation Technologique** - ENSAI (Sept 2022 - Juil 2025)
 
 ---
 
 ## 🌐 CONTACTEZ-MOI
 
-📧 **Email** : [tsopbengjoyce@outlook.com](tsopbengjoyce@outlook.com)
-
+📧 **Email** : [tsopbengjoyce@outlook.com](mailto:tsopbengjoyce@outlook.com)
 💼 **LinkedIn** : [terence-tsopbeng](https://www.linkedin.com/in/terence-tsopbeng)  
-
 🌍 **Portfolio** : [portfolio-terence-tsopbeng.base44.app](https://portfolio-terence-tsopbeng.base44.app/)
-
 📱 **Téléphone** : +33 7 65 72 33 85
 
 ---
