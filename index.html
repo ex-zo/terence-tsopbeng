@@ -9,258 +9,302 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
-        .glass { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass { background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .text-gradient { background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .stats-card { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(56, 189, 248, 0.1); }
-        .btn-primary { background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px #38bdf8; }
-        .timeline-dot { width: 12px; height: 12px; background: #38bdf8; border-radius: 50%; box-shadow: 0 0 10px #38bdf8; }
-        .project-card:hover img { transform: scale(1.05); }
+        .btn-primary { background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.4); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-10px); border-color: rgba(56, 189, 248, 0.3); background: rgba(30, 41, 59, 0.6); }
+        .page-content { display: none; }
+        .page-content.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .nav-link.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; }
     </style>
 </head>
-<body class="selection:bg-sky-500/30">
+<body class="selection:bg-sky-500/30 overflow-x-hidden">
 
     <!-- Navbar -->
     <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center font-bold">T</div>
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+                <img src="https://github.com/ex-zo.png" class="w-10 h-10 rounded-full border-2 border-sky-500" alt="Terence">
                 <span class="text-xl font-bold tracking-tight">Terence<span class="text-sky-400">.</span></span>
             </div>
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="#hero" class="hover:text-white transition-colors">Accueil</a>
-                <a href="#about" class="hover:text-white transition-colors">À propos</a>
-                <a href="#experience" class="hover:text-white transition-colors">Parcours</a>
-                <a href="#skills" class="hover:text-white transition-colors">Compétences</a>
-                <a href="mailto:tsopbengjoyce@outlook.com" class="px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all">Me Contacter</a>
+                <button onclick="showPage('home')" class="nav-link hover:text-white transition-all py-2 active" id="nav-home">Accueil</button>
+                <button onclick="showPage('about')" class="nav-link hover:text-white transition-all py-2" id="nav-about">À propos</button>
+                <button onclick="showPage('journey')" class="nav-link hover:text-white transition-all py-2" id="nav-journey">Parcours</button>
+                <button onclick="showPage('skills')" class="nav-link hover:text-white transition-all py-2" id="nav-skills">Compétences</button>
+                <a href="mailto:tsopbengjoyce@outlook.com" class="px-5 py-2.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 hover:bg-sky-500/20 transition-all font-bold">Me Contacter</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="pt-40 pb-20 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-500/10 blur-[120px] rounded-full -z-10"></div>
-        <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-indigo-500/10 blur-[100px] rounded-full -z-10"></div>
-        
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col items-center text-center">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-sky-500/20 text-sky-400 text-xs font-bold mb-8 uppercase tracking-widest">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-                    </span>
-                    Disponible pour alternance
-                </div>
-                
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight max-w-4xl">
-                    Transformer vos données en <br>
-                    <span class="text-gradient">décisions stratégiques</span>
-                </h1>
-                
-                <p class="text-lg md:text-xl text-slate-400 mb-12 max-w-2xl font-medium">
-                    Data Analyst | Power BI Expert | Digital Transformation Specialist <br>
-                    <span class="text-sm font-normal">📍 Courdimanche, Île-de-France · 🎓 MBA Big Data & IA</span>
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 mb-20">
-                    <a href="#experience" class="btn-primary px-8 py-4 rounded-xl font-bold text-white shadow-lg shadow-sky-500/20">Voir mon parcours</a>
-                    <a href="https://www.linkedin.com/in/terence-tsopbeng" target="_blank" class="glass px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-white/5 transition-all">
-                        <i class="fab fa-linkedin text-sky-400"></i> LinkedIn
-                    </a>
-                </div>
-
-                <!-- Stats Row -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
-                    <div class="stats-card p-6 rounded-2xl">
-                        <div class="text-3xl font-bold text-sky-400 mb-1">3+</div>
-                        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Années Expérience</div>
-                    </div>
-                    <div class="stats-card p-6 rounded-2xl">
-                        <div class="text-3xl font-bold text-sky-400 mb-1">83%</div>
-                        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Fiabilité ML</div>
-                    </div>
-                    <div class="stats-card p-6 rounded-2xl">
-                        <div class="text-3xl font-bold text-sky-400 mb-1">21%</div>
-                        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Réduction Pannes</div>
-                    </div>
-                    <div class="stats-card p-6 rounded-2xl">
-                        <div class="text-3xl font-bold text-sky-400 mb-1">∞</div>
-                        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Passion & Curiosité</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Timeline -->
-    <section id="experience" class="py-24 bg-slate-900/30">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-sky-400 font-bold tracking-widest uppercase text-sm mb-4">✦ Mon Parcours</h2>
-                <h3 class="text-4xl font-bold">Expérience Professionnelle</h3>
-            </div>
-
-            <div class="space-y-12">
-                <!-- ENEO -->
-                <div class="flex gap-6 md:gap-12 relative group">
-                    <div class="hidden md:flex flex-col items-end w-32 shrink-0 pt-1">
-                        <span class="text-sm font-bold text-slate-500">2025</span>
-                        <span class="text-xs text-sky-500/60 font-medium">Stage</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="w-0.5 h-full bg-slate-800 group-last:bg-transparent mt-4"></div>
-                    </div>
-                    <div class="glass p-8 rounded-2xl flex-1 hover:border-sky-500/30 transition-all">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h4 class="text-xl font-bold text-white mb-1">Assistant Chef de Production</h4>
-                                <p class="text-sky-400 font-bold text-sm">ENEO</p>
-                            </div>
-                            <span class="md:hidden text-xs font-bold text-slate-500 bg-slate-800 px-3 py-1 rounded-full">Mars - Juil 2025</span>
-                        </div>
-                        <ul class="text-slate-400 space-y-3 text-sm mb-6">
-                            <li class="flex gap-3"><i class="fas fa-check text-sky-500/50 mt-1"></i> Optimisation de 20% des flux via simulation.</li>
-                            <li class="flex gap-3"><i class="fas fa-check text-sky-500/50 mt-1"></i> Analyse de 15 To de données de consommation énergétique.</li>
-                            <li class="flex gap-3"><i class="fas fa-check text-sky-500/50 mt-1"></i> Management d'une équipe de 8 intervenants.</li>
-                        </ul>
-                        <div class="flex gap-2">
-                            <span class="text-[10px] px-2 py-1 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold uppercase">Simulation</span>
-                            <span class="text-[10px] px-2 py-1 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold uppercase">Big Data</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SABC -->
-                <div class="flex gap-6 md:gap-12 relative group">
-                    <div class="hidden md:flex flex-col items-end w-32 shrink-0 pt-1">
-                        <span class="text-sm font-bold text-slate-500">2024</span>
-                        <span class="text-xs text-sky-500/60 font-medium">Alternance</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="w-0.5 h-full bg-slate-800 group-last:bg-transparent mt-4"></div>
-                    </div>
-                    <div class="glass p-8 rounded-2xl flex-1 hover:border-sky-500/30 transition-all">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h4 class="text-xl font-bold text-white mb-1">Data Analyste – Performance Industrielle</h4>
-                                <p class="text-sky-400 font-bold text-sm">SABC Groupe</p>
-                            </div>
-                        </div>
-                        <ul class="text-slate-400 space-y-3 text-sm mb-6">
-                            <li class="flex gap-3"><i class="fas fa-check text-sky-500/50 mt-1"></i> Dashboards Power BI (80k+ enregistrements).</li>
-                            <li class="flex gap-3"><i class="fas fa-check text-sky-500/50 mt-1"></i> Migration ERP & accompagnement du changement.</li>
-                            <li class="flex gap-3"><i class="fas fa-check text-sky-500/50 mt-1"></i> Modèles ML avec 83% de fiabilité.</li>
-                        </ul>
-                        <div class="flex gap-2">
-                            <span class="text-[10px] px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-bold uppercase">Power BI</span>
-                            <span class="text-[10px] px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-bold uppercase">Python</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ASECNA -->
-                <div class="flex gap-6 md:gap-12 relative group">
-                    <div class="hidden md:flex flex-col items-end w-32 shrink-0 pt-1">
-                        <span class="text-sm font-bold text-slate-500">2021-23</span>
-                        <span class="text-xs text-sky-500/60 font-medium">Alternance</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="w-0.5 h-full bg-slate-800 group-last:bg-transparent mt-4"></div>
-                    </div>
-                    <div class="glass p-8 rounded-2xl flex-1 hover:border-sky-500/30 transition-all">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h4 class="text-xl font-bold text-white mb-1">Assistant Chef de Projet IT</h4>
-                                <p class="text-sky-400 font-bold text-sm">ASECNA</p>
-                            </div>
-                        </div>
-                        <ul class="text-slate-400 space-y-3 text-sm mb-6">
-                            <li class="flex gap-3"><i class="fas fa-check text-sky-500/50 mt-1"></i> Réduction des pannes machines de 21%.</li>
-                            <li class="flex gap-3"><i class="fas fa-check text-sky-500/50 mt-1"></i> Automatisation des process de maintenance.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-                <div>
-                    <h2 class="text-sky-400 font-bold tracking-widest uppercase text-sm mb-4">✦ Compétences</h2>
-                    <h3 class="text-4xl font-bold">Expertise & Outils</h3>
-                </div>
-                <div class="text-slate-500 font-medium text-sm">Top Tech Stack 2026</div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Data & AI -->
-                <div class="glass p-10 rounded-3xl border-sky-500/10">
-                    <div class="w-16 h-16 rounded-2xl bg-sky-500/10 flex items-center justify-center text-3xl mb-8">📊</div>
-                    <h4 class="text-2xl font-bold mb-6">Data & AI</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between"><span class="text-slate-300 font-medium">Power BI</span> <span class="text-sky-400 font-bold">Expert</span></div>
-                        <div class="flex items-center justify-between"><span class="text-slate-300 font-medium">SQL (Advanced)</span> <span class="text-sky-400 font-bold">100%</span></div>
-                        <div class="flex items-center justify-between"><span class="text-slate-300 font-medium">Python (Pandas/ML)</span> <span class="text-sky-400 font-bold">85%</span></div>
-                        <div class="flex items-center justify-between"><span class="text-slate-300 font-medium">Snowflake</span> <span class="text-sky-400 font-bold">Certifié</span></div>
-                    </div>
-                </div>
-
-                <!-- Digital Transformation -->
-                <div class="glass p-10 rounded-3xl border-indigo-500/10">
-                    <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-3xl mb-8">🚀</div>
-                    <h4 class="text-2xl font-bold mb-6">Transformation</h4>
-                    <div class="space-y-4 text-slate-400 text-sm font-medium">
-                        <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex items-center gap-3"><i class="fas fa-project-diagram text-indigo-400"></i> Gestion de Projet IT</div>
-                        <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex items-center gap-3"><i class="fas fa-sync text-indigo-400"></i> Change Management</div>
-                        <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex items-center gap-3"><i class="fas fa-cogs text-indigo-400"></i> Process Optimization</div>
-                    </div>
-                </div>
-
-                <!-- Systems & ERP -->
-                <div class="glass p-10 rounded-3xl border-emerald-500/10">
-                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-3xl mb-8">🏗️</div>
-                    <h4 class="text-2xl font-bold mb-6">ERP & Cloud</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 glass rounded-lg text-xs font-bold text-emerald-400">SAP ERP</span>
-                        <span class="px-3 py-1.5 glass rounded-lg text-xs font-bold text-emerald-400">AWS Cloud</span>
-                        <span class="px-3 py-1.5 glass rounded-lg text-xs font-bold text-emerald-400">DataIKU</span>
-                        <span class="px-3 py-1.5 glass rounded-lg text-xs font-bold text-emerald-400">MS Project</span>
-                        <span class="px-3 py-1.5 glass rounded-lg text-xs font-bold text-emerald-400">Alteryx</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer / Contact -->
-    <footer class="py-20 glass border-t border-white/5">
+    <!-- PAGE: HOME -->
+    <main id="page-home" class="page-content active pt-40 pb-20 min-h-screen relative">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-500/10 blur-[150px] rounded-full -z-10"></div>
         <div class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
-            <h3 class="text-3xl font-bold mb-8">Prêt à transformer vos <span class="text-sky-400">données</span> ?</h3>
-            <p class="text-slate-400 mb-12 max-w-xl">Actuellement en recherche d'alternance pour Septembre 2026. <br>Échangeons sur vos projets !</p>
-            
-            <div class="flex gap-6">
-                <a href="mailto:tsopbengjoyce@outlook.com" class="btn-primary px-8 py-3 rounded-xl font-bold text-white shadow-xl shadow-sky-500/10">
-                    <i class="fas fa-envelope mr-2"></i> Email
-                </a>
-                <a href="https://www.linkedin.com/in/terence-tsopbeng" target="_blank" class="w-12 h-12 rounded-xl glass flex items-center justify-center text-xl hover:text-sky-400 transition-all">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/TerenceJo" target="_blank" class="w-12 h-12 rounded-xl glass flex items-center justify-center text-xl hover:text-white transition-all">
-                    <i class="fab fa-github"></i>
-                </a>
+            <div class="relative mb-10 group">
+                <div class="absolute -inset-1 bg-gradient-to-tr from-sky-400 to-indigo-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <img src="https://github.com/ex-zo.png" class="relative w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-slate-900 object-cover shadow-2xl" alt="Terence Tsopbeng">
             </div>
             
-            <div class="mt-20 pt-8 border-t border-white/5 w-full text-slate-600 text-xs font-bold uppercase tracking-widest">
-                © 2026 Terence Tsopbeng · Data Portfolio · Courdimanche, FR
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-sky-500/20 text-sky-400 text-[10px] font-bold mb-8 uppercase tracking-widest">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                </span>
+                Disponible pour alternance
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-black mb-6 leading-tight max-w-5xl tracking-tighter">
+                Transformer vos données en <br>
+                <span class="text-gradient">décisions stratégiques</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-slate-400 mb-12 max-w-3xl font-medium leading-relaxed">
+                Data Analyst | Power BI Expert | Digital Transformation Specialist <br>
+                <span class="text-sm font-bold text-slate-500 mt-4 block uppercase tracking-widest italic">Transformer la complexité en clarté</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 mb-20">
+                <button onclick="showPage('journey')" class="btn-primary px-10 py-5 rounded-2xl font-black text-white shadow-2xl shadow-sky-500/30 text-lg">Voir mon parcours</button>
+                <a href="https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/146345005/0b8db312-11cb-4123-a466-615929c3c674/CV_terence_Tsopbeng_Alternant_data_analyst_transformation-digital-et-IA.pdf" target="_blank" class="glass px-10 py-5 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-white/5 transition-all text-lg border-white/10">
+                    <i class="fas fa-file-pdf text-red-500"></i> Télécharger CV
+                </a>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 w-full">
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-4xl font-black text-sky-400 mb-2">3+</div>
+                    <div class="text-[10px] text-slate-500 font-black uppercase tracking-widest">Années d'expérience</div>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-4xl font-black text-indigo-400 mb-2">83%</div>
+                    <div class="text-[10px] text-slate-500 font-black uppercase tracking-widest">Fiabilité ML</div>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-4xl font-black text-emerald-400 mb-2">21%</div>
+                    <div class="text-[10px] text-slate-500 font-black uppercase tracking-widest">Réduction pannes</div>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-4xl font-black text-sky-400 mb-2">∞</div>
+                    <div class="text-[10px] text-slate-500 font-black uppercase tracking-widest">Curiosité & Passion</div>
+                </div>
             </div>
         </div>
-    </footer>
+    </main>
+
+    <!-- PAGE: ABOUT -->
+    <section id="page-about" class="page-content pt-40 pb-20 min-h-screen">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="w-full md:w-1/2">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                        <img src="https://github.com/ex-zo.png" class="relative w-full aspect-square object-cover rounded-3xl border border-white/10 shadow-2xl shadow-sky-500/20" alt="Terence">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-sky-400 font-black tracking-widest uppercase text-sm mb-6 flex items-center gap-3">
+                        <span class="w-12 h-px bg-sky-500/50"></span> À propos de moi
+                    </h2>
+                    <h3 class="text-5xl font-black mb-8 leading-tight">Terence Tsopbeng</h3>
+                    <div class="space-y-6 text-lg text-slate-400 font-medium leading-relaxed">
+                        <p>Fort de plusieurs années d'expérience acquises à travers un parcours d'alternance dans la gestion et l'analyse des données de performances, la planification et la production.</p>
+                        <p>Actuellement en <span class="text-white font-bold">MBA2 Big Data & IA</span>, je souhaite mettre mon expertise en <span class="text-sky-400">Power BI et SQL</span> au service de l'optimisation stratégique.</p>
+                        <p>Mon objectif : transformer les données brutes en leviers décisionnels performants pour accompagner la transformation digitale des organisations.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-12">
+                        <div class="glass p-6 rounded-2xl">
+                            <div class="text-sky-400 font-bold mb-1">Localisation</div>
+                            <div class="text-white font-bold">Courdimanche, FR</div>
+                        </div>
+                        <div class="glass p-6 rounded-2xl">
+                            <div class="text-sky-400 font-bold mb-1">Âge</div>
+                            <div class="text-white font-bold">24 ans</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: JOURNEY -->
+    <section id="page-journey" class="page-content pt-40 pb-20 min-h-screen">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-sky-400 font-black tracking-widest uppercase text-sm mb-6">✦ Parcours & Expériences</h2>
+                <h3 class="text-5xl font-black">Mon Cheminement</h3>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Academic -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-10 flex items-center gap-4"><i class="fas fa-graduation-cap text-sky-400"></i> Formations Académiques</h4>
+                    <div class="space-y-8 border-l-2 border-slate-800 ml-4 pl-10">
+                        <div class="relative">
+                            <div class="absolute -left-[51px] top-1 w-5 h-5 rounded-full bg-sky-500 border-4 border-slate-900 shadow-[0_0_10px_#38bdf8]"></div>
+                            <div class="text-sky-400 text-sm font-bold mb-2">2025 - 2027</div>
+                            <h5 class="text-xl font-bold text-white mb-1">MBA Big-Data & IA</h5>
+                            <p class="text-slate-500 font-bold mb-4">MBA ESG - Paris</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[51px] top-1 w-5 h-5 rounded-full bg-slate-800 border-4 border-slate-900"></div>
+                            <div class="text-sky-400 text-sm font-bold mb-2">2025 - 2027</div>
+                            <h5 class="text-xl font-bold text-white mb-1">Master Supply Chain Management</h5>
+                            <p class="text-slate-500 font-bold mb-4">MIT Micro Master - Bac+5, certifié MIT University</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[51px] top-1 w-5 h-5 rounded-full bg-slate-800 border-4 border-slate-900"></div>
+                            <div class="text-sky-400 text-sm font-bold mb-2">2022 - 2025</div>
+                            <h5 class="text-xl font-bold text-white mb-1">Master Innovation Technologique</h5>
+                            <p class="text-slate-500 font-bold mb-4">ENSAI - Agro-industrie</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional -->
+                <div>
+                    <h4 class="text-2xl font-bold mb-10 flex items-center gap-4"><i class="fas fa-briefcase text-sky-400"></i> Expériences Professionnelles</h4>
+                    <div class="space-y-10">
+                        <!-- ENEO -->
+                        <div class="glass p-8 rounded-3xl border-white/5 group hover:border-sky-500/30 transition-all">
+                            <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
+                                <div>
+                                    <h5 class="text-2xl font-bold text-white mb-1">Assistant Chef de Production</h5>
+                                    <p class="text-sky-400 font-bold">ENEO · Stage</p>
+                                </div>
+                                <div class="text-slate-500 font-bold text-sm bg-white/5 px-4 py-2 rounded-xl h-fit">Mars 2025 - Juil 2025</div>
+                            </div>
+                            <ul class="space-y-3 text-slate-400 font-medium">
+                                <li class="flex gap-3"><i class="fas fa-arrow-right text-sky-500 mt-1.5 text-xs"></i> Analyse de 15 To de données de consommation d'énergie.</li>
+                                <li class="flex gap-3"><i class="fas fa-arrow-right text-sky-500 mt-1.5 text-xs"></i> Création d'outils de pilotage budgétaire complexes.</li>
+                                <li class="flex gap-3"><i class="fas fa-arrow-right text-sky-500 mt-1.5 text-xs"></i> Optimisation de 20% des flux via simulation.</li>
+                            </ul>
+                        </div>
+
+                        <!-- SABC -->
+                        <div class="glass p-8 rounded-3xl border-white/5 group hover:border-sky-500/30 transition-all">
+                            <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
+                                <div>
+                                    <h5 class="text-2xl font-bold text-white mb-1">Data Analyste – Performance Industrielle</h5>
+                                    <p class="text-sky-400 font-bold">SABC Groupe · Alternance</p>
+                                </div>
+                                <div class="text-slate-500 font-bold text-sm bg-white/5 px-4 py-2 rounded-xl h-fit">Avril 2024 - Oct 2025</div>
+                            </div>
+                            <ul class="space-y-3 text-slate-400 font-medium">
+                                <li class="flex gap-3"><i class="fas fa-arrow-right text-sky-500 mt-1.5 text-xs"></i> Création d'outils Power BI (80 000 enregistrements multi-sources).</li>
+                                <li class="flex gap-3"><i class="fas fa-arrow-right text-sky-500 mt-1.5 text-xs"></i> Migration ERP & accompagnement du changement pour 40 utilisateurs.</li>
+                                <li class="flex gap-3"><i class="fas fa-arrow-right text-sky-500 mt-1.5 text-xs"></i> Développement de modèles de prévision (fiabilité 83%).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: SKILLS -->
+    <section id="page-skills" class="page-content pt-40 pb-20 min-h-screen">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-sky-400 font-black tracking-widest uppercase text-sm mb-6">✦ Expertises & Projets</h2>
+                <h3 class="text-5xl font-black">Mon Arsenal Technique</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+                <div class="glass p-10 rounded-[2.5rem] card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-500/10 flex items-center justify-center text-3xl mb-8">📊</div>
+                    <h4 class="text-2xl font-bold mb-6">Data Intelligence</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Power BI Expert</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">SQL (PostgreSQL)</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Python (Numpy, Pandas)</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Data Visualisation</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Machine Learning</span>
+                    </div>
+                </div>
+
+                <div class="glass p-10 rounded-[2.5rem] card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-3xl mb-8">🚀</div>
+                    <h4 class="text-2xl font-bold mb-6">Transformation</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Gestion de Projet IT</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">MS Project</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Change Management</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Excellence Oprationnelle</span>
+                    </div>
+                </div>
+
+                <div class="glass p-10 rounded-[2.5rem] card-hover">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-3xl mb-8">🏗️</div>
+                    <h4 class="text-2xl font-bold mb-6">ERP & Systems</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">SAP Modules SD, PP, MM</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Microsoft Dynamics 365</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">AWS Cloud</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">DataIKU</span>
+                        <span class="px-4 py-2 bg-white/5 rounded-xl text-sm font-bold border border-white/5">Snowflake</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Skills & Qualities -->
+            <div class="glass p-12 rounded-[3rem] mb-24 border-sky-500/10">
+                <h4 class="text-2xl font-bold mb-10 text-center uppercase tracking-widest text-slate-500">Qualités & Soft Skills</h4>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-center font-bold">
+                    <div class="space-y-2"><i class="fas fa-bolt text-sky-400 text-2xl"></i><p class="text-sm">Réactivité</p></div>
+                    <div class="space-y-2"><i class="fas fa-brain text-indigo-400 text-2xl"></i><p class="text-sm">Esprit de synthèse</p></div>
+                    <div class="space-y-2"><i class="fas fa-users text-emerald-400 text-2xl"></i><p class="text-sm">Travail en équipe</p></div>
+                    <div class="space-y-2"><i class="fas fa-lightbulb text-yellow-400 text-2xl"></i><p class="text-sm">Force de proposition</p></div>
+                    <div class="space-y-2"><i class="fas fa-check-circle text-sky-400 text-2xl"></i><p class="text-sm">Autonomie</p></div>
+                </div>
+            </div>
+
+            <!-- Projets Phares -->
+            <h4 class="text-3xl font-black mb-12 text-center">Projets Réalisés</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl group">
+                    <div class="text-sky-400 text-xs font-bold mb-4 uppercase tracking-widest">AWS PartyRock</div>
+                    <h5 class="text-xl font-bold mb-4">Career Match Pro</h5>
+                    <p class="text-slate-400 text-sm mb-6">Optimisation des correspondances de carrière via IA Générative.</p>
+                    <a href="https://partyrock.aws/u/THEDY/ZYEioAodt/Career-Match-Pro" target="_blank" class="text-sky-400 font-bold text-sm hover:underline">Voir le projet →</a>
+                </div>
+                <div class="glass p-8 rounded-3xl group">
+                    <div class="text-indigo-400 text-xs font-bold mb-4 uppercase tracking-widest">Supply Chain</div>
+                    <h5 class="text-xl font-bold mb-4">OptimumSCM</h5>
+                    <p class="text-slate-400 text-sm mb-6">Simulation de flux de distribution (optimisation de 20%).</p>
+                    <a href="https://partyrock.aws/u/THEDY/pmzgGwQRM/OptimumSCM" target="_blank" class="text-indigo-400 font-bold text-sm hover:underline">Voir le projet →</a>
+                </div>
+                <div class="glass p-8 rounded-3xl group">
+                    <div class="text-emerald-400 text-xs font-bold mb-4 uppercase tracking-widest">Analytics</div>
+                    <h5 class="text-xl font-bold mb-4">Advanced Snowflake Dashboard</h5>
+                    <p class="text-slate-400 text-sm mb-6">Pilotage de performance temps réel intégré sur Snowflake.</p>
+                    <a href="https://app.snowflake.com/streamlit/negvyoq/ldb36619/#/apps/4wfdxcyja5di7otxnrdd" target="_blank" class="text-emerald-400 font-bold text-sm hover:underline">Voir le projet →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            // Show target page
+            document.getElementById('page-' + pageId).classList.add('active');
+            
+            // Update Nav links
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('nav-' + pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
 
 </body>
 </html>
