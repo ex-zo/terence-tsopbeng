@@ -89,8 +89,11 @@ Je suis un **Data Analyst et Business Intelligence Expert** basé à **Versaille
 ## 🌐 CONTACTEZ-MOI
 
 📧 **Email** : [tsopbengjoyce@outlook.com](tsopbengjoyce@outlook.com)
+
 💼 **LinkedIn** : [terence-tsopbeng](https://www.linkedin.com/in/terence-tsopbeng)  
+
 🌍 **Portfolio** : [portfolio-terence-tsopbeng.base44.app](https://portfolio-terence-tsopbeng.base44.app/)
+
 📱 **Téléphone** : +33 7 65 72 33 85
 
 ---
