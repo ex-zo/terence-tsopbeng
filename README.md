@@ -79,14 +79,16 @@ Je suis un **Data Analyst et Business Intelligence Expert** basé à **Versaille
 ## 🎓 FORMATION
 
 🏫 **MBA Big Data & IA** - MBA ESG Paris (Sept 2025 - Oct 2027)
-🏫 **Master Supply Chain Management** - MIT Micro Master (Août 2025 - Oct 2027)  
+
+🏫 **Master Supply Chain Management** - MIT Micro Master (Août 2025 - Oct 2027) 
+
 🏫 **Master Innovation Technologique** - ENSAI (Sept 2022 - Juil 2025)
 
 ---
 
 ## 🌐 CONTACTEZ-MOI
 
-📧 **Email** : [tsopbengjoyce@outlook.com](mailto:tsopbengjoyce@outlook.com)
+📧 **Email** : [tsopbengjoyce@outlook.com](tsopbengjoyce@outlook.com)
 💼 **LinkedIn** : [terence-tsopbeng](https://www.linkedin.com/in/terence-tsopbeng)  
 🌍 **Portfolio** : [portfolio-terence-tsopbeng.base44.app](https://portfolio-terence-tsopbeng.base44.app/)
 📱 **Téléphone** : +33 7 65 72 33 85
